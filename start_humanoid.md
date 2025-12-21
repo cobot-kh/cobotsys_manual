@@ -1,2 +1,7 @@
-# cobotsys_manual
-test
+# start humanoid
+
+
+상위기 = 비전 + 의사결정 모듈 포함
+하위기 = 제어 + 실행 스크립트 포함
+
+
