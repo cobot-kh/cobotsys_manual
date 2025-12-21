@@ -1,1 +1,2 @@
 # cobotsys_manual
+test
