@@ -34,7 +34,7 @@ ssh leju_kuavo@192.168.26.12  #leju_kuavo
 3. 하위기의 코드 정리
 
 ```bash
-cd kuavo_opensource
+cd kuavo-ros-opensource
 ```
 하위기 코드의 예제 및 스크립트 정보는 위의 폴더에 포함되어 있음
 
@@ -45,8 +45,53 @@ cd kuavo_ros_application
 상위기 기본 코드 예제는 위의 폴더에 존재함
 
 -----------------------------------------------------
+-----------------------------------------------------
+-----------------------------------------------------
 
 
+1. 하위기에서의 로봇 시작 런치 명령어
 
+```bash
+cd kuavo-ros-opensource
+sudo su
+source devel/setup.bash
+roslaunch humanoid_controllers load_kuavo_real.launch joystick_type:=h12
+```
+여기서 뒤에 조이스틱 타입은 제거 가능하다.(조이스틱 사용시 붙여줘야함)
+
+-----------------------------------------------------
+
+2. 하위기에서의 추가 실행 런치 명령어
+```bash
+cd kuavo-ros-opensource
+sudo su
+source devel/setup.bash
+roslaunch h12pro_controller_node kuavo_humanoid_sdk_ws_srv.launch
+```
+이 런치는 통신을 하기 위한 명령으로 보인다. sdk_ws를 사용하려면 올려줘야 한다. 
+
+-----------------------------------------------------
+3. 상위기의 websocket 런치 명령어
+```bash
+cd kuavo_ros_application
+source devel/setup.bash
+roslaunch rosbridge_server rosbridge_websocket.launch
+```
+ros 웹소켓을 살려준다. 
+```bash
+roslaunch kuavo_tf2_web_republisher start_websocket_server.launch
+```
+이명령어도 참고로 기억해둘것
+
+-----------------------------------------------------
+
+4. 상위기의 카메라 및 AR 모듈 런치 명령어
+
+```bash
+cd kuavo_ros_application
+git checkout dev
+catkin build kuavo_camera dynamic_biped kuavo_tf2_web_republisher ar_control
+```
+-----------------------------------------------------
 
 
