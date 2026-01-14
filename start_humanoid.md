@@ -91,6 +91,7 @@ roslaunch kuavo_tf2_web_republisher start_websocket_server.launch
 cd kuavo_ros_application
 git checkout dev
 catkin build kuavo_camera dynamic_biped kuavo_tf2_web_republisher ar_control
+roslaunch dynamic_biped load_robot_head.launch use_orbbec:=true
 ```
 -----------------------------------------------------
 
