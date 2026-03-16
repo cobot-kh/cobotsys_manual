@@ -96,3 +96,15 @@ roslaunch dynamic_biped load_robot_head.launch use_orbbec:=true
 -----------------------------------------------------
 
 
+5. 상위기 추가 명령어 -비전 오리지날 명령어 해상도를 기존보다 높임
+```bash
+roslaunch orbbec_camera gemini_330_series.launch
+```
+-----------------------------------------------------
+
+6. 상위기 마커 인식 추가 코드
+```bash
+roslaunch marker_reader marker_reader.launch
+```
+-------------------------------------------------------
+
