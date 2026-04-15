@@ -225,7 +225,11 @@ rosrun tf2_ros static_transform_publisher 0 0 0 0 0 0 camera_base camera_link
 Terminal 5
 ```bash
 source /opt/ros/noetic/setup.bash
-source ~/catkin_ws/devel/setup.bash
+source ~/catkin_ws/droslaunch apriltag_ros continuous_detection.launch \
+  camera_name:=/camera/color \
+  image_topic:=image_raw \
+  camera_frame:=camera_color_optical_frame \
+  publish_tag_detections_image:=trueevel/setup.bash
 rosrun your_pkg button_point_tf_transformer.py
 ```
 
@@ -261,7 +265,11 @@ Terminal 10
 ```bash
 rviz
 ```
-트러블슈팅
+트러블슈팅roslaunch apriltag_ros continuous_detection.launch \
+  camera_name:=/camera/color \
+  image_topic:=image_raw \
+  camera_frame:=camera_color_optical_frame \
+  publish_tag_detections_image:=true
 
 TF transform failed: unconnected trees
 카메라 프레임과 base_link 트리가 연결되지 않은 상태
@@ -284,3 +292,23 @@ marker_lifetime:=0 으로 실행했는지 확인
 /vision/pre_press_target_point_red_base 는 보이는데 RViz에 안 보임
 PointStamped 토픽은 RViz Marker display에 직접 안 뜸
 별도 marker publisher 노드 실행 필요
+
+
+태그 인식 모듈 런치
+```bash
+roslaunch apriltag_ros continuous_detection.launch \
+  camera_name:=/camera/color \
+  image_topic:=image_raw \
+  camera_frame:=camera_color_optical_frame \
+  publish_tag_detections_image:=true
+```
+
+테스트용 프리 자세 이동 
+```bash
+rostopic pub -1 /vision/execute_prepare std_msgs/Bool "data: true"
+```
+
+테스트용 마커 팔로잉 자세 이동
+```bash
+rostopic pub -1 /vision/execute_pre_press std_msgs/Bool "data: true"
+```
